@@ -1,4 +1,81 @@
 # Trader-Performance-vs-Market-Sentiment
+# Trader Performance vs. Market Sentiment — Primetrade.ai Round-0 Assignment
+
+Analysis of how Bitcoin market sentiment (Fear/Greed index) relates to trader
+behavior and performance on Hyperliquid.
+
+## Repo structure
+
+```
+primetrade/
+├── data/                       # raw input CSVs (as provided)
+│   ├── historical_data.csv
+│   └── fear_greed_index.csv
+├── src/
+│   ├── prepare_data.py         # Part A: load, clean, merge, build metrics
+│   ├── analyze.py              # Part B: Fear/Greed comparisons, segments, charts
+│   ├── predictive_model.py     # Bonus: next-day profitability classifier
+│   └── clustering.py           # Bonus: trader behavioral archetypes
+├── app/
+│   └── dashboard.py            # Bonus: Streamlit dashboard
+├── notebooks/
+│   └── analysis.ipynb          # End-to-end notebook (same pipeline, narrated)
+├── outputs/                    # generated tables, figures, model results
+├── WRITEUP.md                  # methodology, insights, strategy recommendations
+├── requirements.txt
+└── README.md
+```
+
+## Setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+## How to run
+
+**Option A — scripts (fastest, regenerates everything in `outputs/`):**
+
+```bash
+python src/prepare_data.py     # Part A: cleaning, merging, metrics
+python src/analyze.py          # Part B: Fear/Greed comparison, segments, charts
+python src/predictive_model.py # Bonus: predictive model
+python src/clustering.py       # Bonus: clustering
+```
+
+**Option B — notebook (same pipeline, with narrative + inline charts):**
+
+```bash
+jupyter notebook notebooks/analysis.ipynb
+```
+
+**Dashboard (run after the scripts above, so `outputs/` is populated):**
+
+```bash
+streamlit run app/dashboard.py
+```
+
+## Data
+
+- **`fear_greed_index.csv`** — daily Bitcoin Fear & Greed index, 2018–2025 (used: `date`, `value`, `classification`).
+- **`historical_data.csv`** — Hyperliquid trade log, 2023-05-01 to 2025-05-01, 211,224 trades across 32 accounts and 246 symbols. Columns include account, coin, execution price, size, side/direction, closed PnL, fee, timestamp.
+
+Both files were provided with no missing values and no duplicate rows, so
+Part A cleaning is limited to timestamp parsing, date alignment, and
+deriving a standardized long/short flag from the `Direction`/`Side` fields.
+The dataset has **no explicit leverage/margin field**; trade size (USD) is
+used as the leverage/exposure proxy throughout — see `WRITEUP.md` for why.
+
+## Key outputs
+
+- `outputs/daily_sentiment_merged.csv` — daily market-wide metrics merged with sentiment (this is the core analysis table)
+- `outputs/account_summary.csv`, `outputs/account_segments.csv` — per-trader whole-period metrics and segment tags
+- `outputs/figures/*.png` — all charts referenced in `WRITEUP.md`
+- `outputs/bonus_model_results.csv`, `outputs/bonus_cluster_profile.csv` — bonus model/clustering results
+
+
 ## 1. Methodology
 
 **Data.** `historical_data.csv` (211,224 Hyperliquid trades, 32 accounts, 246
