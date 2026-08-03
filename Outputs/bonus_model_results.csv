@@ -1,0 +1,5 @@
+metric,value
+test_auc,0.6311950158104005
+baseline_majority_class_accuracy,0.7
+n_train,1168.0
+n_test,390.0
