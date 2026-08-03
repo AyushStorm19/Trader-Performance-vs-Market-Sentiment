@@ -28,7 +28,7 @@ primetrade/
 │   ├── historical_data.csv
 │   └── fear_greed_index.csv
 │
-├── src/
+├── scripts/
 │   ├── prepare_data.py
 │   ├── analyze.py
 │   ├── predictive_model.py
