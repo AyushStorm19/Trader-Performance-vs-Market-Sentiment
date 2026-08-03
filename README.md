@@ -1,4 +1,4 @@
-# Trader-Performance-vs-Market-Sentiment
+
 # Trader Performance vs. Market Sentiment — Primetrade.ai Round-0 Assignment
 
 Analysis of how Bitcoin market sentiment (Fear/Greed index) relates to trader
