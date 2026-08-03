@@ -21,7 +21,7 @@ Using **211,224 Hyperliquid trades** combined with the **Bitcoin Fear & Greed In
 
 ## 📂 Repository Structure
 
-```text
+text
 primetrade/
 │
 ├── data/
@@ -41,7 +41,7 @@ primetrade/
 │   └── dashboard.py
 │
 ├── outputs/
-│   ├── figures/
+│   ├── charts/
 │   ├── account_summary.csv
 │   ├── account_segments.csv
 │   └── daily_sentiment_merged.csv
